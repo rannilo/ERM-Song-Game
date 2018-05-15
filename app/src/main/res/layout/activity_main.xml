@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/ic_bg_blue"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp">
+
+    <Button
+        android:id="@+id/languageEE"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:text="@string/eesti_keeles"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:srcCompat="@android:color/darker_gray" />
+
+    <Button
+        android:id="@+id/languageRU"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:text="@string/in_english"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+
+    <Button
+        android:id="@+id/languageEN"
+        android:layout_width="match_parent"
+        android:layout_height="120sp"
+        android:text="@string/in_russian"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+
+</LinearLayout>

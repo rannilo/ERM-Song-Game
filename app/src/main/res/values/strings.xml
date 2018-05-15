@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">ERM Memory Game</string>
+    <string name="in_english">IN ENGLISH</string>
+    <string name="eesti_keeles">EESTI KEELES</string>
+    <string name="in_russian">ПО РУССКИЙ</string>
+</resources>
