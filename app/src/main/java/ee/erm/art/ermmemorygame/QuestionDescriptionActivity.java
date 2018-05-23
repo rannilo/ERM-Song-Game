@@ -16,21 +16,48 @@ import java.util.List;
  */
 
 public class QuestionDescriptionActivity extends AppCompatActivity implements View.OnClickListener {
-
     private List<Question> questionList;
     private Integer questionIndex;
+    private Integer answeredQuestion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.question_desc);
 
-        questionList = (List<Question>)getIntent().getSerializableExtra("question");
+        questionList = (List<Question>) getIntent().getSerializableExtra("question");
         questionIndex = getIntent().getIntExtra("questionIndex", 0);
         Question question = questionList.get(questionIndex);
 
-        TextView questionDescription = findViewById(R.id.questionDescription);
-        questionDescription.setText(question.getDescription());
+        answeredQuestion = getIntent().getIntExtra("answeredQuestion", 0);
+        TextView descriptionResult = findViewById(R.id.descriptionResult);
+        if(answeredQuestion.equals(questionList.get(questionIndex).getCorrectAnswer())){
+            switch (MLString.getCurrentLanguage()){
+                case English:
+                    descriptionResult.setText("Correct!");
+                    break;
+                case Estonian:
+                    descriptionResult.setText("Õige!");
+                    break;
+                case Russian:
+                    descriptionResult.setText("Правилно!");
+                    break;
+            }
+        }
+        else{
+            switch (MLString.getCurrentLanguage()){
+                case English:
+                    descriptionResult.setText("Incorrect! The right answer was: ");
+                    break;
+                case Estonian:
+                    descriptionResult.setText("Vale! Õige vastus oli: ");
+                    break;
+                case Russian:
+                    descriptionResult.setText("Неправилно!");
+            }
+        }
+
+
 
         ImageButton nextButton = findViewById(R.id.questionForward);
 
@@ -42,41 +69,25 @@ public class QuestionDescriptionActivity extends AppCompatActivity implements Vi
 
     @Override
     public void onClick(View view) {
-        if(view.getId() == R.id.questionForward) {
-            if(questionIndex + 1 < questionList.size()) {
+        if (view.getId() == R.id.questionForward) {
+            if (questionIndex + 1 < questionList.size()) {
                 Intent intent = new Intent(QuestionDescriptionActivity.this, QuestionActivity.class);
                 intent.putExtra("question", (Serializable) questionList);
                 intent.putExtra("questionIndex", questionIndex + 1);
                 finish();
                 startActivity(intent);
-            }
-            else {
+            } else {
                 Intent intent = new Intent(QuestionDescriptionActivity.this, ResultActivity.class);
                 finish();
                 startActivity(intent);
             }
-        }
-        else if(view.getId() == R.id.reset) {
+        } else if (view.getId() == R.id.reset) {
             finish();
         }
     }
 
-    private int getDrawableImage(){
-        switch (questionIndex){
-            case 0:
-                return R.drawable.pic1;
-            case 1:
-                return R.drawable.pic2;
-            case 2:
-                return R.drawable.pic3;
-            case 3:
-                return R.drawable.pic4;
-            case 4:
-                return R.drawable.pic5;
-            case 5:
-                return R.drawable.pic6;
-            default:
-                return R.drawable.ic_bg_pink;
-        }
+    private int getDrawableImage() {
+        return R.drawable.ic_bg_pink;
     }
 }
+

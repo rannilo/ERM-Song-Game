@@ -12,12 +12,14 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by    teras on 24.03.18.
  */
 
 public class QuestionReader {
+
     public static final String FILENAME = "questions.json";
 
     public static String readFile(AppCompatActivity activity) throws IOException
@@ -37,6 +39,7 @@ public class QuestionReader {
 
     public static List<Question> getQuestions(AppCompatActivity activity) {
         List<Question> questions = new ArrayList<>();
+        List<Question> tenQuestions = new ArrayList<>();
 
         String json;
 
@@ -53,28 +56,17 @@ public class QuestionReader {
                 JSONObject jsonQuestion = jsonQuestionArray.getJSONObject(i);
                 Question question = new Question();
 
-                MLString descriptionText = new MLString();
-                descriptionText.setValue(MLString.Language.Estonian, jsonQuestion.getString("description_ee"));
-                descriptionText.setValue(MLString.Language.Russian, jsonQuestion.getString("description_ru"));
-                descriptionText.setValue(MLString.Language.English, jsonQuestion.getString("description_en"));
-                question.setDescription(descriptionText);
-
-                question.setFileName(jsonQuestion.getString("picture_file"));
                 question.setCorrectAnswer(jsonQuestion.getInt("correct_answer"));
+                question.setFileName(jsonQuestion.getString("music file"));
 
-                JSONArray jsonQuestionAnswers = jsonQuestion.getJSONArray("answers");
+                ArrayList<String> answers = new ArrayList<>();
+                answers.add(jsonQuestion.getString("answer0"));
+                answers.add(jsonQuestion.getString("answer1"));
+                answers.add(jsonQuestion.getString("answer2"));
+                answers.add(jsonQuestion.getString("answer3"));
+                question.setAnswers(answers);
 
-                for(int j = 0; j < jsonQuestionAnswers.length(); j++) {
-                    JSONObject jsonQuestionAnswer = jsonQuestionAnswers.getJSONObject(j);
-
-                    MLString questionAnswer = new MLString();
-                    questionAnswer.setValue(MLString.Language.Estonian, jsonQuestionAnswer.getString("answer_ee"));
-                    questionAnswer.setValue(MLString.Language.Russian, jsonQuestionAnswer.getString("answer_ru"));
-                    questionAnswer.setValue(MLString.Language.English, jsonQuestionAnswer.getString("answer_en"));
-
-                    question.addAnswer(questionAnswer);
-                }
-
+                question.setIndexInFile(i);
                 questions.add(question);
                 Log.i("ERM", jsonQuestion.toString());
             }
@@ -82,6 +74,13 @@ public class QuestionReader {
         catch (JSONException e) {
             e.printStackTrace();
         }
-        return questions;
+
+        Random rand = new Random();
+        for(int i = 0; i<10; i++){
+            int a = rand.nextInt(questions.size());
+            tenQuestions.add(questions.get(a));
+            questions.remove(a);
+        }
+        return tenQuestions;
     }
 }

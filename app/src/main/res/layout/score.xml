@@ -1,44 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/ic_bg_blue"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp">
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@drawable/ic_bg_pink"
+              android:gravity="center"
+              android:orientation="vertical"
+              android:paddingLeft="16dp"
+              android:paddingRight="16dp">
 
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Sinu skoor on"
-        android:textColor="@android:color/background_light"
-        android:textSize="42sp" />
+            android:id="@+id/scoreText1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="TextView"
+            android:textColor="@android:color/background_dark"
+            android:textSize="42sp"/>
 
     <TextView
-        android:id="@+id/textView3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="0/10"
-        android:textColor="@android:color/background_light"
-        android:textSize="108sp" />
+            android:id="@+id/score"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="TextView"
+            android:textColor="@android:color/background_dark"
+            android:textSize="108sp"/>
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textSize="32sp" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="32sp"
+            android:textColor="@android:color/background_dark"
+            android:text="TextView"
+            android:id="@+id/scoreText2"/>
 
     <ImageButton
-        android:id="@+id/reset"
-        style="@android:style/Widget.Holo.ImageButton"
-        android:layout_width="166dp"
-        android:layout_height="156dp"
-        android:scaleType="centerCrop"
-        app:srcCompat="@android:drawable/ic_menu_rotate" />
+            android:id="@+id/reset"
+            style="@android:style/Widget.Holo.ImageButton"
+            android:layout_width="166dp"
+            android:layout_height="166dp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/reset"/>
 
 </LinearLayout>
