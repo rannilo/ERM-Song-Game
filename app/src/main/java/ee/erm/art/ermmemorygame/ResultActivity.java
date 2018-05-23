@@ -103,7 +103,6 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
                     break;
             }
         }
-
         homeButton.setOnClickListener(this);
     }
 

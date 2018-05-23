@@ -39,7 +39,6 @@ public class QuestionReader {
 
     public static List<Question> getQuestions(AppCompatActivity activity) {
         List<Question> questions = new ArrayList<>();
-        List<Question> tenQuestions = new ArrayList<>();
 
         String json;
 
@@ -75,12 +74,6 @@ public class QuestionReader {
             e.printStackTrace();
         }
 
-        Random rand = new Random();
-        for(int i = 0; i<10; i++){
-            int a = rand.nextInt(questions.size());
-            tenQuestions.add(questions.get(a));
-            questions.remove(a);
-        }
-        return tenQuestions;
+        return questions;
     }
 }

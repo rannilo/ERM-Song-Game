@@ -17,19 +17,18 @@
             android:text="@string/eesti_keeles"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
             app:srcCompat="@android:color/darker_gray"/>
-
-    <Button
-            android:id="@+id/languageRU"
-            android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:text="@string/in_english"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1"/>
-
     <Button
             android:id="@+id/languageEN"
             android:layout_width="match_parent"
             android:layout_height="120sp"
-            android:text="@string/in_russian"
+            android:text="@string/in_english"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1"/>
+    <Button
+            android:id="@+id/languageRU"
+            android:layout_width="match_parent"
+            android:text="@string/in_russian"
+            android:layout_height="120dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"/>
+
 
 </LinearLayout>

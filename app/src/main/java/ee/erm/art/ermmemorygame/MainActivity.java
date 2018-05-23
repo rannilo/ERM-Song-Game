@@ -13,12 +13,14 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.logging.Logger;
 
 import javax.xml.transform.Result;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private List<Question> questionCompleteList;
     private List<Question> questionList;
 
     @Override
@@ -27,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         readQuestions();
+        newTenQuestions();
 
         Button estonianButton = findViewById(R.id.languageEE);
         Button russianButton = findViewById(R.id.languageRU);
@@ -52,14 +55,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent = new Intent(MainActivity.this, QuestionActivity.class);
         intent.putExtra("question", (Serializable)questionList);
         ResultActivity.userScore = 0;
+        newTenQuestions();
+
         startActivity(intent);
     }
 
     private void readQuestions() {
-        questionList = QuestionReader.getQuestions(this);
+        questionCompleteList = QuestionReader.getQuestions(this);
 
-        for(Question question : questionList) {
+        for(Question question : questionCompleteList) {
             Log.i("ERM", question.toString());
+        }
+    }
+
+    private void newTenQuestions(){
+        questionList = new ArrayList<>();
+        List<Question> temp = new ArrayList<>(questionCompleteList);
+
+        Random rand = new Random();
+        for(int i = 0; i<10; i++){
+            int a = rand.nextInt(temp.size());
+            questionList.add(temp.get(a));
+            temp.remove(a);
         }
     }
 }

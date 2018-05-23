@@ -54,11 +54,11 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
 
         //Media player
         mp = MediaPlayer.create(this, getDrawableSong());
-        System.out.println("Drawable song index in original file: " + questionList.get(questionIndex).getIndexInFile());
         totalTime = mp.getDuration();
         mp.seekTo(0);
         mp.setVolume(0.5f, 0.5f);
         mp.start();
+        mp.setLooping(true);
 
         //seek bar
         seekBar = findViewById(R.id.seekBar);
@@ -84,7 +84,7 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
                     }
                 }
         );
-
+/*
 
         final Handler HANDLER = new Handler(){
             @Override
@@ -109,8 +109,7 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
                     }
                 }
             }
-        }).start();
-
+        }).start();*/
 
 
         ImageButton nextButton = findViewById(R.id.questionForward);
@@ -132,9 +131,11 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
             playBtn.setBackgroundResource(R.drawable.play);
         }
     }
+
     @Override
     public void onClick(View view) {
         mp.stop();
+        mp.release();
         if(view.getId() == R.id.questionForward) {
             if(radioGroup.getCheckedRadioButtonId() != -1) {
                 int selectedValue = 0;
