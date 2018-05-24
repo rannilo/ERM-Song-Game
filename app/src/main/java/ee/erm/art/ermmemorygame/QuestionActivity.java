@@ -1,6 +1,8 @@
 package ee.erm.art.ermmemorygame;
 
+import android.content.Context;
 import android.content.Intent;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
@@ -26,7 +28,7 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
     private int correctAnswer;
     private MediaPlayer mp;
     private Button playBtn;
-    private SeekBar seekBar;
+    private SeekBar volumeSeekbar;
     private int totalTime;
 
     @Override
@@ -60,17 +62,20 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
         mp.start();
         mp.setLooping(true);
 
-        //seek bar
-        seekBar = findViewById(R.id.seekBar);
-        seekBar.setMax(totalTime);
-        seekBar.setOnSeekBarChangeListener(
+        //volume bar
+
+        volumeSeekbar = (SeekBar)findViewById(R.id.seekBar);
+        final AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        volumeSeekbar.setMax(audioManager
+                .getStreamMaxVolume(AudioManager.STREAM_MUSIC));
+        volumeSeekbar.setProgress(audioManager
+                .getStreamVolume(AudioManager.STREAM_MUSIC));
+        volumeSeekbar.setOnSeekBarChangeListener(
                 new SeekBar.OnSeekBarChangeListener() {
                     @Override
                     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                        if(fromUser){
-                            mp.seekTo(progress);
-                            seekBar.setProgress(progress);
-                        }
+                        audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,
+                                progress, 0);
                     }
 
                     @Override
@@ -84,34 +89,6 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
                     }
                 }
         );
-/*
-
-        final Handler HANDLER = new Handler(){
-            @Override
-            public void handleMessage(Message msg) {
-                int currentPosition = msg.what;
-                seekBar.setProgress(currentPosition);
-            }
-        };
-
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while(mp != null){
-                    try{
-                        Message msg = new Message();
-                        msg.what = mp.getCurrentPosition();
-                        HANDLER.sendMessage(msg);
-                        Thread.sleep(1000);
-                    }catch(InterruptedException e){
-
-                    }
-                }
-            }
-        }).start();*/
-
-
         ImageButton nextButton = findViewById(R.id.questionForward);
         ImageButton homeButton = findViewById(R.id.reset);
 
@@ -124,11 +101,11 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
     public void playBtnClick(View view){
         if(!mp.isPlaying()){
             mp.start();
-            playBtn.setBackgroundResource(R.drawable.pause);
+            playBtn.setBackgroundResource(android.R.drawable.ic_media_pause);
         }
         else{
             mp.pause();
-            playBtn.setBackgroundResource(R.drawable.play);
+            playBtn.setBackgroundResource(android.R.drawable.ic_media_play);
         }
     }
 

@@ -4,9 +4,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:icon="@android:color/holo_red_light"
+        android:label="Laulumäng"
+        android:roundIcon="@android:color/holo_red_light"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
@@ -19,17 +19,17 @@
 
         <activity
             android:name=".QuestionActivity"
-            android:label="@string/app_name">
+            android:label="ERM">
         </activity>
 
         <activity
             android:name=".QuestionDescriptionActivity"
-            android:label="@string/app_name">
+            android:label="ERM">
         </activity>
 
         <activity
             android:name=".ResultActivity"
-            android:label="@string/app_name">
+            android:label="ERM">
         </activity>
     </application>
 

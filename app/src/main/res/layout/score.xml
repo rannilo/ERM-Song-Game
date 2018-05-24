@@ -28,19 +28,23 @@
             android:textSize="108sp"/>
 
     <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="32sp"
-            android:textColor="@android:color/background_dark"
-            android:text="TextView"
-            android:id="@+id/scoreText2" android:gravity="center"/>
+        android:id="@+id/scoreText2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:text="TextView"
+        android:textColor="@android:color/background_dark"
+        android:textSize="32sp" />
 
     <ImageButton
-            android:id="@+id/reset"
-            style="@android:style/Widget.Holo.ImageButton"
-            android:layout_width="167dp"
-            android:layout_height="166dp"
-            android:scaleType="centerCrop"
-            app:srcCompat="@drawable/reset"/>
+        android:id="@+id/reset"
+        style="@android:style/Widget.Holo.ImageButton"
+        android:layout_width="167dp"
+        android:layout_height="166dp"
+        android:layout_marginTop="40dp"
+        android:scaleType="centerCrop"
+        app:srcCompat="@drawable/reset" />
 
 </LinearLayout>
