@@ -40,7 +40,7 @@ public class QuestionDescriptionActivity extends AppCompatActivity implements Vi
                     descriptionResult.setText("Õige! Õige vastus oli: ");
                     break;
                 case Russian:
-                    descriptionResult.setText("Правилно! Правильный ответ был: ");
+                    descriptionResult.setText("Правильно! Правильный ответ: ");
                     break;
             }
         }
@@ -53,7 +53,7 @@ public class QuestionDescriptionActivity extends AppCompatActivity implements Vi
                     descriptionResult.setText("Vale! Õige vastus oli: ");
                     break;
                 case Russian:
-                    descriptionResult.setText("Неправилно! Правильный ответ был: ");
+                    descriptionResult.setText("Неправильно! Правильный ответ: ");
                     break;
             }
         }

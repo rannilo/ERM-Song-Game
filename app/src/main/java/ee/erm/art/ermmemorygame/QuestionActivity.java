@@ -29,7 +29,6 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
     private MediaPlayer mp;
     private Button playBtn;
     private SeekBar volumeSeekbar;
-    private int totalTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -56,14 +55,21 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
 
         //Media player
         mp = MediaPlayer.create(this, getDrawableSong());
-        totalTime = mp.getDuration();
         mp.seekTo(0);
-        mp.setVolume(0.5f, 0.5f);
         mp.start();
         mp.setLooping(true);
 
-        //volume bar
+        /*mp.setOnErrorListener(new MediaPlayer.OnErrorListener() {
+            @Override
+            public boolean onError(MediaPlayer mediaPlayer, int i, int i1) {
+                mp.release();
+                System.out.println("ERROR: " + i + "; " + i1);
+                return true;
+            }
+        });*/
 
+
+        //volume bar
         volumeSeekbar = (SeekBar)findViewById(R.id.seekBar);
         final AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         volumeSeekbar.setMax(audioManager
@@ -111,7 +117,6 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClick(View view) {
-        mp.stop();
         mp.release();
         if(view.getId() == R.id.questionForward) {
             if(radioGroup.getCheckedRadioButtonId() != -1) {
@@ -149,7 +154,6 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
-    //programming gods, forgive me for my sins
     public int getDrawableSong(){
         switch (questionList.get(questionIndex).getIndexInFile()){
             case 0:
